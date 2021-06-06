@@ -43,15 +43,17 @@ namespace Guentai.API.Controllers
 
         // GET: api/Cliente/5
         [HttpGet("qtdPessoas/{qtdPessoas}")]
-        public async Task<ActionResult<Cliente>> GetClienteByQtdPessoas(int qtdPessoas)
+        public async Task<IEnumerable<Cliente>> GetClienteByQtdPessoas(int qtdPessoas)
         {
             var cliente = await _context.Clientes.ToListAsync();
 
-            var result = cliente.Find(q => q.QtdPessoas == qtdPessoas);
+            var result =  cliente.FindAll(q => q.QtdPessoas <= qtdPessoas).ToList();
+
+    
 
             if(result == null)
             {
-                return NotFound();
+                return result;
             }
 
             return result;
