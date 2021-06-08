@@ -38,7 +38,7 @@ namespace Guentai.API.Controllers
                 return NotFound();
             }
 
-            return perfil;
+            return Ok(perfil);
         }
 
         // PUT: api/Perfil/5
@@ -69,7 +69,7 @@ namespace Guentai.API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(perfil);
         }
 
         // POST: api/Perfil

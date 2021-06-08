@@ -69,7 +69,7 @@ namespace Guentai.API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(clienteMesa);
         }
 
         // POST: api/ClienteMesa

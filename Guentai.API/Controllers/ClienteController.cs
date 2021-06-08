@@ -38,25 +38,24 @@ namespace Guentai.API.Controllers
                 return NotFound();
             }
 
-            return cliente;
+            return Ok(cliente);
         }
 
         // GET: api/Cliente/5
         [HttpGet("qtdPessoas/{qtdPessoas}")]
-        public async Task<IEnumerable<Cliente>> GetClienteByQtdPessoas(int qtdPessoas)
+        public async Task<ActionResult<Cliente>> GetClienteByQtdPessoas(int qtdPessoas)
         {
             var cliente = await _context.Clientes.ToListAsync();
 
             var result =  cliente.FindAll(q => q.QtdPessoas <= qtdPessoas).ToList();
 
-    
 
             if(result == null)
             {
-                return result;
+                return  NoContent();
             }
 
-            return result;
+            return Ok(result);
 
         }
 
@@ -88,7 +87,7 @@ namespace Guentai.API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(cliente);
         }
 
         // POST: api/Cliente

@@ -38,7 +38,25 @@ namespace Guentai.API.Controllers
                 return NotFound();
             }
 
-            return funcionario;
+            return Ok(funcionario);
+        }
+
+        // GET: api/Funcionario
+        [HttpGet("funcionario/{strLogin}/{strSenha}")]
+        public async Task<ActionResult<Funcionario>> GetFuncionarioLogin(string strLogin, string strSenha)
+        {
+            var funcionario = await _context.Funcionarios.ToListAsync();
+
+            var result = funcionario.FindAll(q => q.Login == strLogin && q.Senha == strSenha ).ToList();
+
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+
         }
 
         // PUT: api/Funcionario/5
@@ -69,7 +87,7 @@ namespace Guentai.API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(funcionario);
         }
 
         // POST: api/Funcionario

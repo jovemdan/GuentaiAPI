@@ -38,7 +38,7 @@ namespace Guentai.API.Controllers
                 return NotFound();
             }
 
-            return mesa;
+            return Ok(mesa);
         }
 
         // PUT: api/Mesa/5
@@ -69,7 +69,7 @@ namespace Guentai.API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(mesa);
         }
 
         // POST: api/Mesa
