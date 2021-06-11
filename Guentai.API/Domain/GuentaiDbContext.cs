@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Guentai.API.Data
+namespace Guentai.API.Domain
 {
     public class GuentaiDbContext : DbContext
     {

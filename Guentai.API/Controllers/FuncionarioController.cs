@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Guentai.API.Data;
+using Guentai.API.Domain;
 
 namespace Guentai.API.Controllers
 {
@@ -47,7 +47,7 @@ namespace Guentai.API.Controllers
         {
             var funcionario = await _context.Funcionarios.ToListAsync();
 
-            var result = funcionario.FindAll(q => q.Login == strLogin && q.Senha == strSenha ).ToList();
+            var result = funcionario.FindAll(q => q.Username == strLogin && q.Senha == strSenha ).ToList();
 
 
             if (result == null)

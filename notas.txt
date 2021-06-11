@@ -1,0 +1,31 @@
+dotnet ef migrations add Initial -o Data/Migrations
+dotnet ef database update
+
+
+      //Se for usar outros bancos
+      // string sqlConnection = Configuration.GetConnectionString("DefaultConnection");
+
+      //services.AddDbContextPool<AppDbContext>(options =>
+      //              options.UseMySql(sqlConnection, ServerVersion.AutoDetect(sqlConnection)));
+
+
+ROTAS EXAMPLO
+
+FUNCIONARIO POST
+{
+    "id": 1,
+    "nome": "Danilo",
+    "username": "jovemdan",
+    "senha": "123456",
+    "horaInicio": "09:00",
+    "horaFim": "18:00",
+    "perfilId": 1,
+    "perfil": null
+  }
+
+  FUNCIONARIOLOGIN POST
+{
+    "username": "jovemdan",
+    "senha": "123456",
+    "perfil": null
+  }

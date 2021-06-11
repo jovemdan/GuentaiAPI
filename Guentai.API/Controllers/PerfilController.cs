@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Guentai.API.Data;
+using Guentai.API.Domain;
 
 namespace Guentai.API.Controllers
 {
