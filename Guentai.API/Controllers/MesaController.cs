@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Guentai.API.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Guentai.API.Controllers
 {
@@ -22,6 +23,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Mesa
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Mesa>>> GetMesas()
         {
             return await _context.Mesas.ToListAsync();
@@ -29,6 +31,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Mesa/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Mesa>> GetMesa(int id)
         {
             var mesa = await _context.Mesas.FindAsync(id);
@@ -44,6 +47,7 @@ namespace Guentai.API.Controllers
         // PUT: api/Mesa/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutMesa(int id, Mesa mesa)
         {
             if (id != mesa.Id)
@@ -75,6 +79,7 @@ namespace Guentai.API.Controllers
         // POST: api/Mesa
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Mesa>> PostMesa(Mesa mesa)
         {
             _context.Mesas.Add(mesa);
@@ -85,6 +90,7 @@ namespace Guentai.API.Controllers
 
         // DELETE: api/Mesa/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteMesa(int id)
         {
             var mesa = await _context.Mesas.FindAsync(id);

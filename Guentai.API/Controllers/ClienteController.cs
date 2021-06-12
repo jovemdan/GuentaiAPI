@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Guentai.API.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Guentai.API.Controllers
 {
@@ -22,6 +23,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Cliente
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
         {
             return await _context.Clientes.ToListAsync();
@@ -29,6 +31,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Cliente/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Cliente>> GetCliente(int id)
         {
             var cliente = await _context.Clientes.FindAsync(id);
@@ -43,6 +46,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Cliente/5
         [HttpGet("qtdPessoas/{qtdPessoas}")]
+        [Authorize]
         public async Task<ActionResult<Cliente>> GetClienteByQtdPessoas(int qtdPessoas)
         {
             var cliente = await _context.Clientes.ToListAsync();
@@ -62,6 +66,7 @@ namespace Guentai.API.Controllers
         // PUT: api/Cliente/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
             if (id != cliente.Id)
@@ -93,6 +98,7 @@ namespace Guentai.API.Controllers
         // POST: api/Cliente
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
             _context.Clientes.Add(cliente);
@@ -103,6 +109,7 @@ namespace Guentai.API.Controllers
 
         // DELETE: api/Cliente/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteCliente(int id)
         {
             var cliente = await _context.Clientes.FindAsync(id);

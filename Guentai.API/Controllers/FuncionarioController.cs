@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Guentai.API.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Guentai.API.Controllers
 {
@@ -22,6 +23,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Funcionario
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Funcionario>>> GetFuncionarios()
         {
             return await _context.Funcionarios.ToListAsync();
@@ -29,6 +31,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Funcionario/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Funcionario>> GetFuncionario(int id)
         {
             var funcionario = await _context.Funcionarios.FindAsync(id);
@@ -43,6 +46,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Funcionario
         [HttpGet("funcionario/{strLogin}/{strSenha}")]
+        [Authorize]
         public async Task<ActionResult<Funcionario>> GetFuncionarioLogin(string strLogin, string strSenha)
         {
             var funcionario = await _context.Funcionarios.ToListAsync();
@@ -62,7 +66,8 @@ namespace Guentai.API.Controllers
         // PUT: api/Funcionario/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFuncionario(int id, Funcionario funcionario)
+        [Authorize]
+        public async Task<IActionResult> PutFuncionario(int id, [FromBody] Funcionario funcionario)
         {
             if (id != funcionario.Id)
             {
@@ -93,6 +98,7 @@ namespace Guentai.API.Controllers
         // POST: api/Funcionario
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Funcionario>> PostFuncionario(Funcionario funcionario)
         {
             _context.Funcionarios.Add(funcionario);
@@ -103,6 +109,7 @@ namespace Guentai.API.Controllers
 
         // DELETE: api/Funcionario/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteFuncionario(int id)
         {
             var funcionario = await _context.Funcionarios.FindAsync(id);

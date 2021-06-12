@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Guentai.API.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Guentai.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClienteMesaController : ControllerBase
     {
         private readonly GuentaiDbContext _context;
@@ -22,6 +24,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/ClienteMesa
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<ClienteMesa>>> GetClientesMesas()
         {
             return await _context.ClientesMesas.ToListAsync();
@@ -29,6 +32,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/ClienteMesa/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<ClienteMesa>> GetClienteMesa(int id)
         {
             var clienteMesa = await _context.ClientesMesas.FindAsync(id);
@@ -44,6 +48,7 @@ namespace Guentai.API.Controllers
         // PUT: api/ClienteMesa/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutClienteMesa(int id, ClienteMesa clienteMesa)
         {
             if (id != clienteMesa.Id)
@@ -75,6 +80,7 @@ namespace Guentai.API.Controllers
         // POST: api/ClienteMesa
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ClienteMesa>> PostClienteMesa(ClienteMesa clienteMesa)
         {
             _context.ClientesMesas.Add(clienteMesa);
@@ -85,6 +91,7 @@ namespace Guentai.API.Controllers
 
         // DELETE: api/ClienteMesa/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteClienteMesa(int id)
         {
             var clienteMesa = await _context.ClientesMesas.FindAsync(id);

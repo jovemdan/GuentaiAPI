@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Guentai.API.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Guentai.API.Controllers
 {
@@ -22,6 +23,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Perfil
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Perfil>>> GetPerfis()
         {
             return await _context.Perfis.ToListAsync();
@@ -29,6 +31,7 @@ namespace Guentai.API.Controllers
 
         // GET: api/Perfil/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Perfil>> GetPerfil(int id)
         {
             var perfil = await _context.Perfis.FindAsync(id);
@@ -44,7 +47,8 @@ namespace Guentai.API.Controllers
         // PUT: api/Perfil/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPerfil(int id, Perfil perfil)
+        [Authorize]
+        public async Task<IActionResult> PutPerfil(int id, [FromBody] Perfil perfil)
         {
             if (id != perfil.Id)
             {
@@ -75,6 +79,7 @@ namespace Guentai.API.Controllers
         // POST: api/Perfil
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Perfil>> PostPerfil(Perfil perfil)
         {
             _context.Perfis.Add(perfil);
@@ -85,6 +90,7 @@ namespace Guentai.API.Controllers
 
         // DELETE: api/Perfil/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletePerfil(int id)
         {
             var perfil = await _context.Perfis.FindAsync(id);
